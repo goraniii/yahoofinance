@@ -8,3 +8,18 @@ end_date = '2021-09-12'
 google_data = data.DataReader('GOOGL','yahoo', start_date, end_date)
 google_data.head(9)
 google_data['Close'].plot()
+
+import pandas_datareader.data as web
+import datetime
+import matplotlib.pyplot as plt
+import mpl_finance
+
+start = datetime.datetime(2019, 3, 1)
+end = datetime.datetime(2021, 3, 31)
+skhynix = web.DataReader("000660.KS", "yahoo", start, end)
+
+fig = plt.figure(figsize=(12, 8))
+ax = fig.add_subplot(111)
+
+mpl_finance.candlestick2_ohlc(ax, skhynix['Open'], skhynix['High'], skhynix['Low'], skhynix['Close'], width=0.5, colorup='r', colordown='b')
+plt.show()
